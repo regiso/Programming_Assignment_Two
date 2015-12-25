@@ -1,0 +1,35 @@
+#programming assignment 2
+
+# this code will set and get the value of a square matrix
+# it also will get and set the value of the inverse the square matrix
+
+makeCacheMatrix <- function(x=numeric()) {
+	m<-matrix(nrow=x, ncol=x) 			#this defines m as a square x by matrix 
+	m<-NULL						#the m matrix is initialized to empty
+	set <- function(y) {				#this defines set as a function of y
+		x <<- y					#x is set as equal to y in the cache space
+		m <<-	NULL					#m is set to null in the cache space
+	}
+	get <- function() m				#get is defined as a function that returns m
+	setsolve <- function(solve) s<<-solve	#setsolve is a function that inverses m to s
+	getsolve <- function() s			#getsolve is a function that returns s
+	list(set=set, get=get, 				#prints list of the solutions
+		setmean=setmean,
+		getmean=getmean)
+}
+ 
+#this code checks to see if the matrix has been inverted
+#if inverted already it pulls it from the cache
+#otherwise it calculates the inverse and saves it
+
+cacheSolve <- function(x,..){				
+	s <- x$getsolve ()				#s defined as the getsolve solution for x
+	if(!is.null(m)) {					#if it is not null then it will got to cache to get m
+		message("getting cached data")
+		return (m)
+	}
+	data <- x$get()					#if s is NULL then it gets defines data as m
+	s <- solve(data,...)				#then it assigns s as the inverse of m
+	x$setsolve(s)					#then it puts this into cache space for solve
+	s							#returns s
+}
