@@ -10,8 +10,8 @@ makeCacheMatrix <- function(x=matrix()) {
 		m <<-	NULL					#m is set to null in the cache space
 	}
 	get <- function() m				#get is defined as a function that returns m
-	setsolve <- function(solve) s<<-solve		#setsolve is a function that inverses m to s
-	getsolve <- function() s			#getsolve is a function that returns s
+	setsolve <- function(solve) m<<-solve		#setsolve is a function that inverses m to s
+	getsolve <- function() m			#getsolve is a function that returns s
 	list(set=set, get=get, 				#prints list of the solutions
 		setsolve=setsolve,
 		getsolve=getsolve)
@@ -22,13 +22,13 @@ makeCacheMatrix <- function(x=matrix()) {
 #otherwise it calculates the inverse and saves it
 
 cacheSolve <- function(x=matrix(),..){				
-	s <- x$getsolve ()				#s defined as the getsolve solution for x
-	if(!is.null(s)) {					#if it is not null then it will got to cache to get m
+	m <- x$getsolve ()				#s defined as the getsolve solution for x
+	if(!is.null(m)) {					#if it is not null then it will got to cache to get m
 		message("getting cached data")
-		return (s)
+		return (m)
 	}
 	data <- x$get()					#if s is NULL then it gets defines data as m
 	s <- solve(data,...)				#then it assigns s as the inverse of m
-	x$setsolve(s)					#then it puts this into cache space for solve
+	x$setsolve(m)					#then it puts this into cache space for solve
 	s							#returns s
 }
