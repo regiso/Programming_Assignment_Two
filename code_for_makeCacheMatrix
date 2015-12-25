@@ -14,8 +14,8 @@ makeCacheMatrix <- function(x=numeric()) {
 	setsolve <- function(solve) s<<-solve	#setsolve is a function that inverses m to s
 	getsolve <- function() s			#getsolve is a function that returns s
 	list(set=set, get=get, 				#prints list of the solutions
-		setmean=setmean,
-		getmean=getmean)
+		setsolve=setsolve,
+		getsolve=getsolve)
 }
  
 #this code checks to see if the matrix has been inverted
