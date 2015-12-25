@@ -23,9 +23,9 @@ makeCacheMatrix <- function(x=matrix()) {
 
 cacheSolve <- function(x=matrix(),..){				
 	s <- x$getsolve ()				#s defined as the getsolve solution for x
-	if(!is.null(m)) {					#if it is not null then it will got to cache to get m
+	if(!is.null(s)) {					#if it is not null then it will got to cache to get m
 		message("getting cached data")
-		return (m)
+		return (s)
 	}
 	data <- x$get()					#if s is NULL then it gets defines data as m
 	s <- solve(data,...)				#then it assigns s as the inverse of m
