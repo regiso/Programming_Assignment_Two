@@ -1,20 +1,27 @@
 #programming assignment 2
 
-# this code will set and get the value of a square matrix
-# it also will get and set the value of the inverse the square matrix
+# create a a variable to store the cachematrix function
 
+a<-makeCacheMatrix()
+
+# store a matrix
+
+a$set(matrix(1:4, 2,2)
+
+#Define the cachematrix function
+#initialize a null matrix
 makeCacheMatrix <- function(x=matrix()) {
-	m<-NULL						#the m matrix is initialized to empty
-	set <- function(y) {				#this defines set as a function of y
-		x <<- y					#x is set as equal to y in the cache space
+	m<-NULL						#initialize a null matrix
+	set <- function(y) {				#set y equal to the input
+		x <<- y					#make x to y in the cache space
 		m <<-	NULL					#m is set to null in the cache space
 	}
-	get <- function() x				#get is defined as a function that returns x
-	setsolve <- function(solve) m<<-solve	#setsolve creates a null solve matrix
-	getsolve <- function() m			#getsolve is a function that returns m
+	get <- function() x				#get that returns x
+	setmatrix <- function(solve) m<<-solve	#setsolve creates a solve matrix to m
+	getmatrix <- function() m			#getsolve returns m
 	list(set=set, get=get, 				#creates list of the solutions
-		setsolve=setsolve,
-		getsolve=getsolve)
+		setmatrix=setmatrix,
+		getmatrix=getmatrix)
 }
 
  
@@ -22,14 +29,15 @@ makeCacheMatrix <- function(x=matrix()) {
 #if inverted already it pulls it from the cache
 #otherwise it calculates the inverse and saves it
 
-cacheSolve <- function(x=matrix(),..){				
-	m <- getsolve()					#m links to the cached solve matrix
+cacheSolve <- function(x=matrix(),...){				
+	m <- x$getmatrix()				#m becomees the getmatrix from make fxn
 	if(!is.null(m)) {					#if it is not null then it will got to cache to get m
 		message("getting cached data")
 		return (m)
 	}
-	data <- get()					#if m is NULL then it fills data with x
-	m <- solve(data)					#then m is filled with the solve of x
-	setsolve(m)						#then it puts this into cache space for solve
+	matrix <- x$get()					#if m is NULL then it fills data with x
+	m <- solve(matrix,...)				#then m is filled with the solve of x
+	x$setmatrix(m)					#then it puts this into cache space for solve
 	m							#returns m as the solve of x
 }
+
