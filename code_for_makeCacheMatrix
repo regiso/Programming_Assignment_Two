@@ -1,25 +1,25 @@
 #programming assignment 2
 
 # create a a variable to store the cachematrix function
-
+# that will make it easier to use in the cacheSolve part of the exercise
 a<-makeCacheMatrix()
 
-# store a matrix for variable a above
+# store a matrix that will be  used in a subset of the a variable - the set function at the beginning
 
 a$set(matrix(1:4, 2,2))
 
-#Define the cachematrix function
-#initialize a null matrix
+#Define the cachematrix function as a function that stores functions
+
 makeCacheMatrix <- function(x=matrix()) {
 	m<-NULL						#initialize a null matrix
-	set <- function(y) {				#set y equal to the input
+	set <- function(y) {				#set y equal to the input (i.e. x)
 		x <<- y					#make x to y in the cache space
-		m <<-	NULL					#m is set to null in the cache space
+		m <<-	NULL				#m is set to null in the cache space
 	}
 	get <- function() x				#get that returns x
-	setmatrix <- function(solve) m<<-solve	#setsolve creates a solve matrix to m
+	setmatrix <- function(solve) m<<-solve		#setsolve creates a solve matrix to m
 	getmatrix <- function() m			#getsolve returns m
-	list(set=set, get=get, 				#creates list of the solutions
+	list(set=set, get=get, 				#creates list of the functions included in makeCacheMatrix
 		setmatrix=setmatrix,
 		getmatrix=getmatrix)
 }
@@ -30,14 +30,14 @@ makeCacheMatrix <- function(x=matrix()) {
 #otherwise it calculates the inverse and saves it
 
 cacheSolve <- function(x=matrix(),...){			# assigns function performed on matrix  to catchSolve	
-	m <- x$getmatrix()				#assigns m to getmatrix 
-	if(!is.null(m)) {					#if m is not null then it will got to cache to get m
+	m <- x$getmatrix()				#assigns m to get a the getmatrix subset of x
+	if(!is.null(m)) {				#if m is not null then it will got to cache to get m
 		message("getting cached data")
 		return (m)
 	}
-	matrix <- x$get()					#if m is NULL then it fills data with x
+	matrix <- x$get()				#if m is NULL then it fills data with the get subset of x
 	m <- solve(matrix,...)				#then m is filled with the solve of x
-	x$setmatrix(m)					#then it puts this into cache space for solve
-	m							#returns m as the solve of x
+	x$setmatrix(m)					#then it puts this into setmatrix subset of x
+	m						#returns m as the solve of x
 }
 
