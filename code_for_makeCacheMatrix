@@ -4,9 +4,9 @@
 
 a<-makeCacheMatrix()
 
-# store a matrix
+# store a matrix for variable a above
 
-a$set(matrix(1:4, 2,2)
+a$set(matrix(1:4, 2,2))
 
 #Define the cachematrix function
 #initialize a null matrix
@@ -29,9 +29,9 @@ makeCacheMatrix <- function(x=matrix()) {
 #if inverted already it pulls it from the cache
 #otherwise it calculates the inverse and saves it
 
-cacheSolve <- function(x=matrix(),...){				
-	m <- x$getmatrix()				#m becomees the getmatrix from make fxn
-	if(!is.null(m)) {					#if it is not null then it will got to cache to get m
+cacheSolve <- function(x=matrix(),...){			# assigns function performed on matrix  to catchSolve	
+	m <- x$getmatrix()				#assigns m to getmatrix 
+	if(!is.null(m)) {					#if m is not null then it will got to cache to get m
 		message("getting cached data")
 		return (m)
 	}
