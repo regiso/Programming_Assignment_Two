@@ -22,13 +22,13 @@ makeCacheMatrix <- function(x=matrix()) {
 #otherwise it calculates the inverse and saves it
 
 cacheSolve <- function(x=matrix(),..){				
-	m <- x$getsolve ()				#s defined as the getsolve solution for x
+	m <- getsolve()					#m links to the cached solve matrix
 	if(!is.null(m)) {					#if it is not null then it will got to cache to get m
 		message("getting cached data")
 		return (m)
 	}
-	data <- x$get()					#if s is NULL then it gets defines data as m
-	s <- solve(data,...)				#then it assigns s as the inverse of m
-	x$setsolve(m)					#then it puts this into cache space for solve
-	s							#returns s
+	data <- get()					#if m is NULL then it fills data with x
+	m <- solve(data,...)				#then m is filled with the solve of x
+	setsolve(m)						#then it puts this into cache space for solve
+	m							#returns m as the solve of x
 }
